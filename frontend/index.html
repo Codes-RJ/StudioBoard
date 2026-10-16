@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Analytics Dashboard turns CSV and Excel datasets into clear dashboards, direct analysis, reports, and controlled workspaces." />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="theme-color" content="#173F35" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Analytics Dashboard" />
+    <meta property="og:description" content="Turn CSV and Excel datasets into clear dashboards and direct analysis." />
+    <meta name="twitter:card" content="summary" />
+    <title>Analytics Dashboard</title>
+    <style>
+      body { margin: 0; background: #f7f5ef; }
+      .boot-header { height: 80px; margin: 0 5%; border-bottom: 1px solid #cbd1c4; display: flex; align-items: center; }
+      .boot-header > span { width: 210px; height: 25px; }
+      .page-skeleton { max-width: 1280px; margin: auto; padding: 60px 5% 80px; font-family: system-ui, sans-serif; }
+      .loading-label { display: block; color: #53614d; font-size: 13px; margin-bottom: 24px; }
+      .skeleton-layout { display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 8%; min-height: 55vh; }
+      .skeleton-block { display: block; border-radius: 4px; background: linear-gradient(100deg, #e5e8df 20%, #f0f1ea 45%, #e5e8df 70%); background-size: 220% 100%; animation: skeleton-shimmer 1.8s ease-in-out infinite; }
+      .skeleton-kicker { height: 10px; width: 35%; margin-bottom: 28px; }
+      .skeleton-title { height: 54px; width: 95%; margin-bottom: 14px; }
+      .skeleton-line { height: 12px; margin-block: 14px; width: 100%; }
+      .skeleton-block.short { width: 65%; }
+      .skeleton-button { height: 46px; width: 175px; margin-top: 30px; }
+      .skeleton-panel { border: 1px solid #d8decf; border-radius: 8px; padding: 24px; background: #fafbf7; }
+      .skeleton-chart { height: 180px; display: flex; align-items: end; gap: 14px; padding-block: 24px; border-bottom: 1px solid #d8decf; }
+      .skeleton-chart > span { flex: 1; }
+      @keyframes skeleton-shimmer { to { background-position: -220% 0; } }
+      @media (max-width: 767px) { .page-skeleton { padding: 32px 6%; } .skeleton-layout { grid-template-columns: 1fr; gap: 36px; } .skeleton-title { height: 40px; } .skeleton-chart { height: 130px; } .boot-header { height: 72px; } }
+      @media (prefers-reduced-motion: reduce) { .skeleton-block { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <div id="root"><div class="boot-header" aria-hidden="true"><span class="skeleton-block"></span></div><div class="page-skeleton" role="status" aria-label="Loading page"><span class="loading-label">Preparing your workspace…</span><div class="skeleton-layout" aria-hidden="true"><div class="skeleton-copy"><div class="skeleton-block skeleton-kicker"></div><div class="skeleton-block skeleton-title"></div><div class="skeleton-block skeleton-title short"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div><div class="skeleton-block skeleton-button"></div></div><div class="skeleton-panel"><div class="skeleton-block skeleton-line short"></div><div class="skeleton-chart"><span class="skeleton-block" style="height:35%"></span><span class="skeleton-block" style="height:65%"></span><span class="skeleton-block" style="height:48%"></span><span class="skeleton-block" style="height:82%"></span></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line"></div></div></div></div></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": "analytics-dashboard-monorepo",
+  "version": "2.0.0",
+  "description": "Browser-first private analytics workspace with React and Vite, plus a separate FastAPI server edition",
+  "scripts": {
+    "dev": "npm run dev:frontend",
+    "dev:server": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && .\\venv\\Scripts\\uvicorn app.main:app --reload --port 5000 --no-proxy-headers",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:worker": "cd backend && .\\venv\\Scripts\\python job_worker.py",
+    "dev:maintenance": "cd backend && .\\venv\\Scripts\\python maintenance.py --delete-orphans",
+    "install:all": "npm run install:backend && npm run install:frontend",
+    "install:backend": "cd backend && python -m venv venv && .\\venv\\Scripts\\pip install --require-hashes -r requirements.txt && .\\venv\\Scripts\\pip install --require-hashes -r requirements-dev.txt",
+    "install:frontend": "cd frontend && npm install",
+    "test:frontend": "cd frontend && npm run check",
+    "test:backend": "cd backend && .\\venv\\Scripts\\pytest tests/ -v",
+    "check": "npm run test:frontend && npm run test:backend",
+    "reset:admin": "cd backend && .\\venv\\Scripts\\python reset_admin.py --confirm",
+    "reconcile:storage": "cd backend && .\\venv\\Scripts\\python reconcile_storage.py",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "benchmark:assistant": "node frontend/scripts/benchmark-ai-query.mjs",
+    "build:social-preview": "npm --prefix frontend run build:social-preview",
+    "optimize:images": "npm run build:social-preview"
+  },
+  "keywords": [
+    "analytics",
+    "dashboard",
+    "react",
+    "fastapi",
+    "pandas",
+    "clean-architecture"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13 <23",
+    "npm": ">=10"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,109 @@
+name: Playwright Tests
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: playwright-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    env:
+      MYSQL_ROOT_PASSWORD: ci-root-password
+      MYSQL_DATABASE: analytics
+      MYSQL_USER: analytics
+      MYSQL_PASSWORD: ci-analytics-password
+      NODE_ENV: development
+      JWT_SECRET: ci-jwt-secret-at-least-thirty-two-characters
+      PASSWORD_PEPPER: ci-password-pepper-at-least-16
+      CLIENT_ORIGIN: http://localhost:8080
+      CORS_ORIGINS: http://localhost:8080
+      TRUSTED_HOSTS: localhost,127.0.0.1
+      METRICS_TOKEN: ci-metrics-token-at-least-24-chars
+      FRONTEND_PORT: 8080
+      PLAYWRIGHT_BASE_URL: http://localhost:8080
+      E2E_ADMIN_EMAIL: e2e-admin@example.com
+      E2E_ADMIN_PASSWORD: e2e-admin-password-change-me
+      E2E_SERVER_WORKSPACE: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm --prefix frontend ci
+      - name: Install Playwright browser
+        run: npm --prefix frontend exec -- playwright install --with-deps chromium
+      - name: Start application stack
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml up --build --wait
+      - name: Bootstrap administrator
+        run: >-
+          docker compose -f docker-compose.yml -f docker-compose.local.yml exec -T
+          -e ADMIN_EMAIL=${E2E_ADMIN_EMAIL} -e ADMIN_PASSWORD=${E2E_ADMIN_PASSWORD}
+          backend python reset_admin.py --confirm
+      - name: Run Playwright tests
+        run: npm --prefix frontend run test:e2e -- --project=chromium
+      - name: Show service logs on failure
+        if: failure()
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml logs
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: |
+            frontend/playwright-report/
+            frontend/test-results/
+          retention-days: 30
+      - name: Stop containers
+        if: always()
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml down -v
+
+  personal:
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    env:
+      VITE_ENABLE_SERVER_WORKSPACE: "false"
+      VITE_PUBLIC_SITE_URL: ""
+      E2E_SERVER_WORKSPACE: "false"
+      PLAYWRIGHT_START_SERVER: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install dependencies
+        run: npm --prefix frontend ci
+      - name: Install browser
+        run: npm --prefix frontend exec -- playwright install --with-deps ${{ matrix.browser }}
+      - name: Build personal application
+        run: npm --prefix frontend run build
+      - name: Check bundle budgets
+        run: npm --prefix frontend run check:bundle
+      - name: Verify personal workspace and SEO
+        run: npm --prefix frontend run test:e2e -- --project=${{ matrix.browser }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: personal-${{ matrix.browser }}-report
+          path: |
+            frontend/playwright-report/
+            frontend/test-results/
+          retention-days: 30

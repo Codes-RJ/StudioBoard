@@ -1,0 +1,47 @@
+const guardedModules = [
+  'src/utils/exactDecimal.js',
+  'src/utils/finiteArithmetic.js',
+  'src/utils/datasetWorkerPayload.js',
+  'src/utils/datasetWorkerReader.js',
+  'src/utils/qualityReview.js',
+  'src/utils/analysisScope.js',
+  'src/utils/localDatasetStore.js',
+  'src/utils/localDatasetDatabase.js',
+  'src/utils/localImportStorage.js',
+  'src/utils/chartPanelData.js',
+  'src/hooks/useDatasetSelection.js',
+  'src/hooks/useLayoutEditing.js',
+  'src/hooks/useDashboardSummary.js',
+  'src/hooks/useChartSeries.js',
+  'src/utils/delimitedParser.worker.js',
+];
+
+export default [{
+  files: guardedModules,
+  languageOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+    globals: Object.fromEntries([
+      'window', 'document', 'localStorage', 'indexedDB', 'IDBKeyRange',
+      'Blob', 'File', 'FileReader', 'DOMException', 'Worker', 'self',
+      'TextEncoder', 'TextDecoder', 'AbortController', 'crypto', 'console',
+      'setTimeout', 'clearTimeout', 'navigator', 'performance', 'structuredClone',
+    ].map((name) => [name, 'readonly'])),
+  },
+  rules: {
+    'no-undef': 'error',
+    'no-dupe-args': 'error',
+    'no-dupe-keys': 'error',
+    'no-duplicate-case': 'error',
+    'no-unreachable': 'error',
+    'no-unsafe-finally': 'error',
+    'no-async-promise-executor': 'error',
+    'no-prototype-builtins': 'error',
+    'no-loss-of-precision': 'error',
+    'valid-typeof': 'error',
+    'use-isnan': 'error',
+    'no-eval': 'error',
+    'no-implied-eval': 'error',
+    'no-new-func': 'error',
+  },
+}];

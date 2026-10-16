@@ -1,0 +1,11 @@
+# Local container override. Use together with docker-compose.yml when no
+# external TLS-terminating proxy is present.
+services:
+  backend:
+    environment:
+      NODE_ENV: development
+      CLIENT_ORIGIN: http://localhost:8080
+      CORS_ORIGINS: http://localhost:8080
+      TRUSTED_HOSTS: localhost,127.0.0.1
+      TRUST_PROXY_HEADERS: "false"
+      FORCE_HTTPS: "false"

@@ -1,0 +1,15 @@
+# Recommended deployment. This stack hosts static assets only.
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_ENABLE_SERVER_WORKSPACE: "false"
+        VITE_PUBLIC_SITE_URL: "${VITE_PUBLIC_SITE_URL:-}"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${FRONTEND_PORT:-8080}:80"
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: ${FRONTEND_MEMORY_LIMIT:-256m}

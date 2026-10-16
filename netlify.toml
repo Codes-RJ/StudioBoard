@@ -1,0 +1,20 @@
+# Static personal edition. Production VITE_PUBLIC_SITE_URL is set in the owned
+# project's environment after its stable HTTPS address is known.
+[build]
+  base = "frontend"
+  command = "npm run build:netlify"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  VITE_ENABLE_SERVER_WORKSPACE = "false"
+  VITE_ENABLE_EXPERIMENTAL_LOCAL_LLM = "false"
+
+[context.deploy-preview.environment]
+  VITE_PUBLIC_SITE_URL = ""
+
+[context.branch-deploy.environment]
+  VITE_PUBLIC_SITE_URL = ""
+
+[build.processing]
+  skip_processing = true

@@ -1,0 +1,274 @@
+{
+  "measuredAt": "2026-10-10T04:54:40.242Z",
+  "hardware": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "logicalCpus": 16,
+    "physicalMemoryBytes": 16831729664,
+    "platform": "win32"
+  },
+  "scope": "Fresh Chromium per fixture; actual CSV upload, quality dialog approval, rendered table row count, visible chart loading completion, backup and restore. Timings include automated clicks, not human review time. Original bytes verified after restore. No model downloads.",
+  "limitations": "Three single-run desktop fixtures, not capacity limits, physical mobile evidence or all chart types. One-second process and requested 100ms main-thread heap samples miss transient peaks; heap excludes workers. CPU throttling is emulation. Does not measure GPU, physical weak devices, host concurrency, screen readers or complete browser resource idle.",
+  "importRun": "item-20-import-4x-recovered",
+  "imports": [
+    {
+      "rows": 100,
+      "columns": 8,
+      "bytes": 5749,
+      "fileToUploadReadyMs": 1540.5061,
+      "reviewAndApprovalMs": 4703.731799999999,
+      "fileToDashboardReadyMs": 7661.368900000001,
+      "mainThreadHeapBytes": 11851748,
+      "backupMs": 6919.6695,
+      "backupBytes": 44298,
+      "restoreToDashboardReadyMs": 7658.044000000002,
+      "originalBytesVerified": true,
+      "cleanupMs": 0.0020000000004074536,
+      "passed": true,
+      "processMemory": {
+        "intervalMilliseconds": 1000,
+        "samples": 26,
+        "maximumSampledWorkingSetBytes": 421101568,
+        "maximumSampledPrivateCommittedBytes": 252919808,
+        "boundary": "Owned browser processes, including worker-containing renderers; sampled maxima miss transient peaks. Summed working sets double-count shared pages; private committed bytes are not JS heap."
+      },
+      "telemetry": {
+        "cpuThrottleRate": 4,
+        "requestedHeapIntervalMs": 100,
+        "heapSamples": 210,
+        "maximumSampledMainThreadHeapBytes": 23772996,
+        "maximumObservedSampleGapMs": 3010,
+        "measurementValid": true,
+        "resources": {
+          "unmatchedRequestEvents": 9,
+          "liveWorkers": 0,
+          "requestsStarted": 71,
+          "requestsFinished": 62,
+          "requestsFailed": 0,
+          "workersCreated": 28,
+          "workersClosed": 28
+        },
+        "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+        "longestTaskMs": 5568,
+        "maximumTimerGapMs": 5739.600000008941
+      }
+    },
+    {
+      "rows": 10000,
+      "columns": 8,
+      "bytes": 588951,
+      "fileToUploadReadyMs": 1805.4090999999971,
+      "reviewAndApprovalMs": 6681.0308,
+      "fileToDashboardReadyMs": 10029.330499999996,
+      "mainThreadHeapBytes": 24995884,
+      "backupMs": 8249.2088,
+      "backupBytes": 3798630,
+      "restoreToDashboardReadyMs": 14982.890899999999,
+      "originalBytesVerified": true,
+      "cleanupMs": 0.0026999999972758815,
+      "passed": true,
+      "processMemory": {
+        "intervalMilliseconds": 1000,
+        "samples": 39,
+        "maximumSampledWorkingSetBytes": 533426176,
+        "maximumSampledPrivateCommittedBytes": 358535168,
+        "boundary": "Owned browser processes, including worker-containing renderers; sampled maxima miss transient peaks. Summed working sets double-count shared pages; private committed bytes are not JS heap."
+      },
+      "telemetry": {
+        "cpuThrottleRate": 4,
+        "requestedHeapIntervalMs": 100,
+        "heapSamples": 318,
+        "maximumSampledMainThreadHeapBytes": 68072956,
+        "maximumObservedSampleGapMs": 2531,
+        "measurementValid": true,
+        "resources": {
+          "unmatchedRequestEvents": 8,
+          "liveWorkers": 0,
+          "requestsStarted": 70,
+          "requestsFinished": 62,
+          "requestsFailed": 0,
+          "workersCreated": 28,
+          "workersClosed": 28
+        },
+        "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+        "longestTaskMs": 5528,
+        "maximumTimerGapMs": 5557.800000011921
+      }
+    },
+    {
+      "rows": 1000,
+      "columns": 100,
+      "bytes": 794773,
+      "fileToUploadReadyMs": 1652.5650000000023,
+      "reviewAndApprovalMs": 17962.143299999996,
+      "fileToDashboardReadyMs": 23182.26830000001,
+      "mainThreadHeapBytes": 31027544,
+      "backupMs": 8484.258499999996,
+      "backupBytes": 5233781,
+      "restoreToDashboardReadyMs": 45200.83499999999,
+      "originalBytesVerified": true,
+      "cleanupMs": 0.0016999999934341758,
+      "passed": true,
+      "processMemory": {
+        "intervalMilliseconds": 1000,
+        "samples": 83,
+        "maximumSampledWorkingSetBytes": 645439488,
+        "maximumSampledPrivateCommittedBytes": 469258240,
+        "boundary": "Owned browser processes, including worker-containing renderers; sampled maxima miss transient peaks. Summed working sets double-count shared pages; private committed bytes are not JS heap."
+      },
+      "telemetry": {
+        "cpuThrottleRate": 4,
+        "requestedHeapIntervalMs": 100,
+        "heapSamples": 707,
+        "maximumSampledMainThreadHeapBytes": 71765628,
+        "maximumObservedSampleGapMs": 2649,
+        "measurementValid": true,
+        "resources": {
+          "unmatchedRequestEvents": 9,
+          "liveWorkers": 0,
+          "requestsStarted": 71,
+          "requestsFinished": 62,
+          "requestsFailed": 0,
+          "workersCreated": 28,
+          "workersClosed": 28
+        },
+        "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+        "longestTaskMs": 5635,
+        "maximumTimerGapMs": 5841.29999999702
+      }
+    }
+  ],
+  "collections": [
+    {
+      "measuredAt": "2026-10-10T05:03:28.804Z",
+      "fixtureSources": 30,
+      "totalRows": 13770,
+      "passed": true,
+      "importAndAutomatedReviewMs": 11466.3483,
+      "processMemory": {
+        "intervalMilliseconds": 1000,
+        "samples": 19,
+        "maximumSampledWorkingSetBytes": 616775680,
+        "maximumSampledPrivateCommittedBytes": 446459904,
+        "boundary": "Owned browser processes, including worker-containing renderers; sampled maxima miss transient peaks. Summed working sets double-count shared pages; private committed bytes are not JS heap."
+      },
+      "boundary": "Thirty real CSV imports and source switches on desktop Chromium. Timings include automated quality approval; timer gaps include navigation and rendering. Worker disappearance is scoped to analytical worker URLs, not complete browser resource idle. Coarse sampled memory misses transient peaks; no physical mobile or hosting-concurrency guarantee.",
+      "run": "item-20-collection-1x",
+      "switchP95Ms": 501.1818999999996,
+      "switchMaximumMs": 769.0235999999986,
+      "telemetry": {
+        "cpuThrottleRate": 1,
+        "requestedHeapIntervalMs": 100,
+        "heapSamples": 223,
+        "maximumSampledMainThreadHeapBytes": 81313604,
+        "maximumObservedSampleGapMs": 341,
+        "measurementValid": true,
+        "resources": {
+          "unmatchedRequestEvents": 192,
+          "liveWorkers": 0,
+          "requestsStarted": 540,
+          "requestsFinished": 348,
+          "requestsFailed": 0,
+          "workersCreated": 319,
+          "workersClosed": 319
+        },
+        "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+        "longestTaskMs": 485,
+        "maximumTimerGapMs": 493.59999999403954
+      }
+    },
+    {
+      "measuredAt": "2026-10-10T05:08:10.124Z",
+      "fixtureSources": 30,
+      "totalRows": 13770,
+      "passed": true,
+      "importAndAutomatedReviewMs": 57649.0564,
+      "processMemory": {
+        "intervalMilliseconds": 1000,
+        "samples": 158,
+        "maximumSampledWorkingSetBytes": 442568704,
+        "maximumSampledPrivateCommittedBytes": 462430208,
+        "boundary": "Owned browser processes, including worker-containing renderers; sampled maxima miss transient peaks. Summed working sets double-count shared pages; private committed bytes are not JS heap."
+      },
+      "boundary": "Thirty real CSV imports and source switches on desktop Chromium. Timings include automated quality approval; timer gaps include navigation and rendering. Worker disappearance is scoped to analytical worker URLs, not complete browser resource idle. Coarse sampled memory misses transient peaks; no physical mobile or hosting-concurrency guarantee.",
+      "run": "item-20-collection-4x-fresh",
+      "switchP95Ms": 6542.034899999999,
+      "switchMaximumMs": 6641.335399999996,
+      "telemetry": {
+        "cpuThrottleRate": 4,
+        "requestedHeapIntervalMs": 100,
+        "heapSamples": 1612,
+        "maximumSampledMainThreadHeapBytes": 95265784,
+        "maximumObservedSampleGapMs": 2331,
+        "measurementValid": true,
+        "resources": {
+          "unmatchedRequestEvents": 134,
+          "liveWorkers": 0,
+          "requestsStarted": 542,
+          "requestsFinished": 408,
+          "requestsFailed": 0,
+          "workersCreated": 387,
+          "workersClosed": 387
+        },
+        "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+        "longestTaskMs": 4292,
+        "maximumTimerGapMs": 4597.5999999940395
+      }
+    }
+  ],
+  "cleanup": {
+    "connections": {
+      "started": 2,
+      "closed": 2,
+      "finished": 1
+    },
+    "passed": true,
+    "measuredAt": "2026-10-10T05:09:18.885Z",
+    "boundary": "Disposable desktop Chromium, owned HTTPS streaming fixture and real CSV worker. No external dataset/model traffic. Self-signed TLS accepted only for this fixture context; not hosted TLS acceptance. Cleanup counts are captured before forced browser/server teardown. Synthetic fixture certificate is not a production credential.",
+    "run": "item-20-cleanup-4x-final",
+    "cases": [
+      {
+        "kind": "native-https-body-cancel",
+        "settledMs": 463.6823000000004
+      },
+      {
+        "kind": "real-csv-worker-cancel",
+        "fixtureBytes": 36800069,
+        "settledMs": 229.95850000000064,
+        "storedCounts": {
+          "datasets": 0,
+          "datasetMetadata": 0,
+          "datasetRows": 0,
+          "workspaceImports": 0,
+          "stagedDatasets": 0,
+          "stagedFiles": 0,
+          "sourceFiles": 0,
+          "sourceFileChunks": 0
+        }
+      },
+      {
+        "kind": "native-https-completion",
+        "settledMs": 4418.7552
+      }
+    ],
+    "telemetry": {
+      "cpuThrottleRate": 4,
+      "requestedHeapIntervalMs": 100,
+      "heapSamples": 100,
+      "maximumSampledMainThreadHeapBytes": 10381604,
+      "maximumObservedSampleGapMs": 718,
+      "measurementValid": true,
+      "resources": {
+        "unmatchedRequestEvents": 5,
+        "liveWorkers": 0,
+        "requestsStarted": 43,
+        "requestsFinished": 37,
+        "requestsFailed": 1,
+        "workersCreated": 9,
+        "workersClosed": 9
+      },
+      "boundary": "Chromium main-thread heap samples exclude worker heaps/GPU and can miss transient peaks. Actual sample gaps are recorded. Long tasks/timer gaps reset on full navigation. Page request events can lack terminal events when a worker target closes; unmatched events are observations, not proven active connections. Worker cleanup covers this owned page, not service workers or all browser resources. Actual streaming cancellation is checked separately at the owned HTTPS server. CPU throttle emulates slower computation, not physical RAM, storage, network or devices.",
+      "longestTaskMs": 949,
+      "maximumTimerGapMs": 1271.3999999910593
+    }
+  }
+}

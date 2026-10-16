@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "metrics": [
+    {
+      "id": "signed-zero-missing",
+      "values": [-5, 0, 5, null, 10],
+      "exact": false,
+      "expected": { "sum": 10, "average": 2.5, "min": -5, "max": 10, "count": 4, "missing": 1 }
+    },
+    {
+      "id": "all-missing",
+      "values": [null, null],
+      "exact": false,
+      "expected": { "sum": null, "average": null, "min": null, "max": null, "count": 0, "missing": 2 }
+    },
+    {
+      "id": "native-decimals",
+      "values": [0.1, 0.2, 0, null],
+      "exact": false,
+      "expected": { "sum": 0.3, "average": 0.1, "min": 0, "max": 0.2, "count": 3, "missing": 1 }
+    },
+    {
+      "id": "reviewed-decimals",
+      "values": ["0.1", "0.2", "0", null],
+      "exact": true,
+      "expected": { "sum": "0.3", "average": "0.1", "min": "0", "max": "0.2", "count": 3, "missing": 1 },
+      "serverApproximation": { "mean": 0.1, "min": 0, "max": 0.2 }
+    },
+    {
+      "id": "reviewed-unsafe-integers",
+      "values": ["9007199254740993", "9007199254740994"],
+      "exact": true,
+      "expected": { "sum": "18014398509481987", "average": "9007199254740993.5", "min": "9007199254740993", "max": "9007199254740994", "count": 2, "missing": 0 },
+      "serverApproximation": { "mean": 9007199254740992, "min": 9007199254740992, "max": 9007199254740994 }
+    },
+    {
+      "id": "reviewed-repeating-average",
+      "values": ["1", "0", "0"],
+      "exact": true,
+      "expected": { "sum": "1", "average": "1/3", "min": "0", "max": "1", "count": 3, "missing": 0 },
+      "serverApproximation": { "mean": 0.3333333333333333, "min": 0, "max": 1 }
+    }
+  ],
+  "correlations": [
+    { "id": "positive", "pairs": [[1, 2], [2, 4], [3, 6]], "value": 1, "pairCount": 3 },
+    { "id": "negative", "pairs": [[1, 6], [2, 4], [3, 2]], "value": -1, "pairCount": 3 },
+    { "id": "measured-zero", "pairs": [[-1, 1], [0, -2], [1, 1]], "value": 0, "pairCount": 3 },
+    { "id": "constant", "pairs": [[1, 2], [1, 4], [1, 6]], "value": null, "pairCount": 3 },
+    { "id": "insufficient-pairs", "pairs": [[1, 2], [null, 4], [3, null]], "value": null, "pairCount": 1 },
+    { "id": "nonfinite-and-missing", "pairs": [[1, 2], [2, 4], [3, 6], ["Infinity", 8], [9, "-Infinity"], ["NaN", 10], [null, 11]], "value": 1, "pairCount": 3 }
+  ],
+  "filtering": {
+    "rows": [{ "sourceRow": 7, "group": "West", "value": 1 }, { "sourceRow": 10, "group": "East", "value": 10 }, { "sourceRow": 13, "group": "WESTERN", "value": 21 }, { "sourceRow": 20, "group": null, "value": null }],
+    "textFilter": { "group": "west" },
+    "textSourceRows": [7, 13],
+    "numericFilter": { "value": "1" },
+    "frontendNumericSourceRows": [7, 10, 13],
+    "serverNumericSourceRows": [7]
+  },
+  "outliers": {
+    "values": [null, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100],
+    "sourceRows": [7, 10, 13, 20, 28, 31, 45, 60, 71, 82, 90, 101],
+    "outlierSourceRows": [101],
+    "outlierValues": [100]
+  }
+}

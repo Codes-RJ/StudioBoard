@@ -1,0 +1,191 @@
+name: checks
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  VITE_ENABLE_EXPERIMENTAL_LOCAL_LLM: 'false'
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  application-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements.txt
+            backend/requirements-dev.txt
+      - run: npm ci
+      - run: npm --prefix frontend ci
+      - run: python -m pip install --require-hashes -r backend/requirements.txt
+      - run: python -m pip install --require-hashes -r backend/requirements-dev.txt
+      - run: npm run test:frontend
+      - name: Verify notices against the emitted browser distribution
+        run: npm --prefix frontend run check:notices
+      - name: Scan source and generated assets without printing secrets
+        run: python scripts/scan_secrets.py --build
+      - run: cd backend && pytest tests/ -q
+      - run: npm audit --audit-level=high
+      - run: npm --prefix frontend audit --audit-level=high
+
+  personal-compose-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: application-checks
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose -f docker-compose.personal.yml up --build --wait
+      - name: Verify static delivery and disabled API
+        run: |
+          curl --fail http://localhost:8080/
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' http://localhost:8080/api/config)" = 404
+      - name: Stop the disposable personal stack
+        if: always()
+        run: docker compose -f docker-compose.personal.yml down
+
+  compose-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: application-checks
+    env:
+      MYSQL_ROOT_PASSWORD: ci-root-password
+      MYSQL_DATABASE: analytics
+      MYSQL_USER: analytics
+      MYSQL_PASSWORD: ci-analytics-password
+      NODE_ENV: development
+      JWT_SECRET: ci-jwt-secret-at-least-thirty-two-characters
+      PASSWORD_PEPPER: ci-password-pepper-at-least-16
+      CLIENT_ORIGIN: http://localhost:8080
+      CORS_ORIGINS: http://localhost:8080
+      TRUSTED_HOSTS: localhost,127.0.0.1
+      METRICS_TOKEN: ci-metrics-token-at-least-24-chars
+      FRONTEND_PORT: 8080
+    steps:
+      - uses: actions/checkout@v4
+      - name: Start the local container topology
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml up --build --wait
+      - name: Verify API readiness and frontend delivery
+        run: |
+          curl --fail --retry 10 http://localhost:8080/api/health/ready
+          curl --fail http://localhost:8080/
+      - name: Show service logs on failure
+        if: failure()
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml logs
+      - name: Stop containers
+        if: always()
+        run: docker compose -f docker-compose.yml -f docker-compose.local.yml down -v
+
+  mysql-migrations:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ci-root-password
+          MYSQL_DATABASE: analytics
+          MYSQL_USER: analytics
+          MYSQL_PASSWORD: ci-analytics-password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping -h localhost -pci-root-password"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements.txt
+            backend/requirements-dev.txt
+      - run: python -m pip install --require-hashes -r backend/requirements.txt
+      - run: python -m pip install --require-hashes -r backend/requirements-dev.txt
+      - name: Apply and inspect MySQL migrations
+        working-directory: backend
+        env:
+          NODE_ENV: development
+          DATABASE_URL: mysql+aiomysql://analytics:ci-analytics-password@127.0.0.1:3306/analytics
+          JWT_SECRET: ci-jwt-secret-at-least-thirty-two-characters
+          PASSWORD_PEPPER: ci-password-pepper-at-least-16
+        run: |
+          alembic -c alembic.ini upgrade head
+          alembic -c alembic.ini current
+      - name: Verify concurrent worker claims on MySQL
+        working-directory: backend
+        env:
+          MYSQL_INTEGRATION_DATABASE_URL: mysql+aiomysql://analytics:ci-analytics-password@127.0.0.1:3306/analytics
+        run: pytest tests/test_mysql_concurrency.py -q
+
+  redis-rate-store:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --require-hashes -r backend/requirements.txt
+      - run: python -m pip install --require-hashes -r backend/requirements-dev.txt
+      - name: Check shared counters across independent processes
+        working-directory: backend
+        env:
+          REDIS_INTEGRATION_STORAGE_URL: redis://127.0.0.1:6379/15
+        run: pytest tests/test_redis_rate_integration.py -q
+
+  container-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    needs: application-checks
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build reviewed runtime images
+        run: |
+          docker build -t analytics-dashboard-backend:ci backend
+          docker build -t analytics-dashboard-frontend:ci frontend
+      - name: Scan backend runtime image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: analytics-dashboard-backend:ci
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'
+      - name: Scan frontend runtime image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: analytics-dashboard-frontend:ci
+          format: table
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: '1'

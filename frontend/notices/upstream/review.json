@@ -1,0 +1,147 @@
+{
+  "reviewedAt": "2026-10-03T13:37:30.977Z",
+  "reviews": [
+    {
+      "package": "@napi-rs/canvas-win32-x64-msvc@1.0.10",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/Brooooooklyn/canvas",
+      "notices": [
+        {
+          "file": "napi-rs_canvas-win32-x64-msvc-1.0.10-LICENSE",
+          "url": "https://raw.githubusercontent.com/Brooooooklyn/canvas/7d19abed029287e7c26b14eaa6e67d560a37d853/LICENSE",
+          "sha256": "8802fecf9da4367bc23bcf20b21cc143785fc6c92b152f3fa7fbe6ce08d344d6"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/%40napi-rs%2Fcanvas/1.0.10",
+      "revision": "7d19abed029287e7c26b14eaa6e67d560a37d853",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    },
+    {
+      "package": "agent-base@6.0.2",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/TooTallNate/node-agent-base",
+      "notices": [],
+      "metadataURL": "https://registry.npmjs.org/agent-base/6.0.2",
+      "revision": "c4b8ea2e1a11bae023bb09b708050a50418204e9",
+      "status": "unresolved: upstream commit has no configured license file"
+    },
+    {
+      "package": "https-proxy-agent@5.0.1",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/TooTallNate/node-https-proxy-agent",
+      "notices": [],
+      "metadataURL": "https://registry.npmjs.org/https-proxy-agent/5.0.1",
+      "revision": "d0d80cc0482f20495aa8595f802e1a9f3b1b3409",
+      "status": "unresolved: upstream commit has no configured license file"
+    },
+    {
+      "package": "guid-typescript@1.0.9",
+      "declaredLicense": "ISC",
+      "repository": "https://github.com/NicolasDeveloper/guid-typescript",
+      "notices": [],
+      "metadataURL": "https://registry.npmjs.org/guid-typescript/1.0.9",
+      "revision": "1870de806c3db7ba46c5b8a1387c60fc9dda9284",
+      "status": "unresolved: upstream commit has no configured license file"
+    },
+    {
+      "package": "onnxruntime-common@1.30.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/Microsoft/onnxruntime",
+      "notices": [
+        {
+          "file": "onnxruntime-common-1.30.0-LICENSE",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7/LICENSE",
+          "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+        },
+        {
+          "file": "onnxruntime-common-1.30.0-ThirdPartyNotices.txt",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7/ThirdPartyNotices.txt",
+          "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/onnxruntime-common/1.30.0",
+      "revisionLookup": "https://api.github.com/repos/Microsoft/onnxruntime/commits/v1.30.0",
+      "revision": "f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    },
+    {
+      "package": "onnxruntime-node@1.30.0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/Microsoft/onnxruntime",
+      "notices": [
+        {
+          "file": "onnxruntime-node-1.30.0-LICENSE",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7/LICENSE",
+          "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+        },
+        {
+          "file": "onnxruntime-node-1.30.0-ThirdPartyNotices.txt",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7/ThirdPartyNotices.txt",
+          "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/onnxruntime-node/1.30.0",
+      "revisionLookup": "https://api.github.com/repos/Microsoft/onnxruntime/commits/v1.30.0",
+      "revision": "f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    },
+    {
+      "package": "onnxruntime-web@1.31.0-dev.20260914-8d85527a0",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/Microsoft/onnxruntime",
+      "notices": [
+        {
+          "file": "onnxruntime-web-1.31.0-dev.20260914-8d85527a0-LICENSE",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/8d85527a010e294a26b274749f74294b2a32cec5/LICENSE",
+          "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+        },
+        {
+          "file": "onnxruntime-web-1.31.0-dev.20260914-8d85527a0-ThirdPartyNotices.txt",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/8d85527a010e294a26b274749f74294b2a32cec5/ThirdPartyNotices.txt",
+          "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/onnxruntime-web/1.31.0-dev.20260914-8d85527a0",
+      "revision": "8d85527a010e294a26b274749f74294b2a32cec5",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    },
+    {
+      "package": "onnxruntime-common@1.31.0-dev.20260911-2a43ec07e",
+      "declaredLicense": "MIT",
+      "repository": "https://github.com/Microsoft/onnxruntime",
+      "notices": [
+        {
+          "file": "onnxruntime-common-1.31.0-dev.20260911-2a43ec07e-LICENSE",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/2a43ec07e67df9263c7c56c15da76cc7f74d7b32/LICENSE",
+          "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+        },
+        {
+          "file": "onnxruntime-common-1.31.0-dev.20260911-2a43ec07e-ThirdPartyNotices.txt",
+          "url": "https://raw.githubusercontent.com/Microsoft/onnxruntime/2a43ec07e67df9263c7c56c15da76cc7f74d7b32/ThirdPartyNotices.txt",
+          "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/onnxruntime-common/1.31.0-dev.20260911-2a43ec07e",
+      "revisionLookup": "https://api.github.com/repos/Microsoft/onnxruntime/commits/2a43ec07e",
+      "revision": "2a43ec07e67df9263c7c56c15da76cc7f74d7b32",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    },
+    {
+      "package": "victory-vendor@36.9.2",
+      "declaredLicense": "MIT AND ISC",
+      "repository": "https://github.com/FormidableLabs/victory",
+      "notices": [
+        {
+          "file": "victory-vendor-36.9.2-LICENSE.txt",
+          "url": "https://raw.githubusercontent.com/FormidableLabs/victory/dd86278d205f3f306e2ab38c317a6f9c56f0a6f8/LICENSE.txt",
+          "sha256": "34dee5fd5e5cc756efb5ad4d64652bce719bdf5e900ca5d7538253e737930bc4"
+        }
+      ],
+      "metadataURL": "https://registry.npmjs.org/victory-vendor/36.9.2",
+      "revisionLookup": "https://api.github.com/repos/FormidableLabs/victory/commits/v36.9.2",
+      "revision": "dd86278d205f3f306e2ab38c317a6f9c56f0a6f8",
+      "status": "pinned upstream notices captured; distribution scope still needs review"
+    }
+  ],
+  "boundary": "Source commit and notice checksums, not legal certification or proof for separately downloaded model/native binaries."
+}

@@ -1,0 +1,56 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      root-routine-updates:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      frontend-routine-updates:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: pip
+    directory: /backend
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      backend-patch-updates:
+        update-types: [patch]
+  - package-ecosystem: docker
+    directory: /backend
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: python
+        versions: [">= 3.13"]
+  - package-ecosystem: docker
+    directory: /frontend
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: node
+        versions: [">= 23"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions-routine-updates:
+        update-types: [minor, patch]
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]

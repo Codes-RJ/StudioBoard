@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "thresholds": { "numericAccuracy": 1, "fabricatedCitations": 0, "invalidToolRateMaximum": 0.1, "p95AnswerMilliseconds": 60000 },
+  "csv": "ID,Revenue,Region,Notes\n001,10,West,ordinary\n002,20,East,ordinary\n003,30,West,nebula tail evidence\n004,,East,Revenue is missing\n",
+  "cases": [
+    { "id": "full-sum", "mode": "agent", "query": "Calculate the sum of Revenue across all rows.", "metric": "Revenue", "aggregation": "sum", "value": 60 },
+    { "id": "full-missing-average", "mode": "agent", "query": "Calculate the average Revenue, excluding missing values.", "metric": "Revenue", "aggregation": "average", "value": 20 },
+    { "id": "groups", "mode": "agent", "query": "Calculate total Revenue grouped by Region.", "metric": "Revenue", "aggregation": "sum", "dimension": "Region", "groups": { "West": 40, "East": 20 } },
+    { "id": "lexical-and-semantic-tail", "mode": "search", "query": "nebula tail evidence", "citationText": "nebula tail evidence", "sourceRowIdSuffix": ":row:3" },
+    { "id": "unknown-field", "mode": "agent", "query": "Calculate profit. There is no profit field, so ask me to clarify rather than invent a number.", "requiresClarification": true }
+  ]
+}

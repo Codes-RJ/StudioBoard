@@ -1,0 +1,5 @@
+ID,Revenue,Region,Date,Note
+001,10.25,East,2026-01-01,first
+002,0,West,2026-01-02,zero
+003,-2.50,East,2026-01-03,negative
+004,,West,2026-01-04,missing
