@@ -3,7 +3,7 @@ uvicorn[standard]>=0.28.0
 pydantic>=2.6.0
 pydantic-settings>=2.2.0
 email-validator>=2.1.0
-sqlalchemy>=2.0.28
+sqlalchemy>=2.1.4
 aiomysql>=0.2.0
 # Required when MySQL authenticates with caching_sha2_password or sha256_password.
 cryptography>=42.0.0
